@@ -23,3 +23,6 @@ It automatically discovers schemas and columns, generates safe SQL queries via a
 - **LLM Integration**: OpenAI / HuggingFace / other pluggable models  
 - **Frontend**: React (planned)  
 - **Containerization**: Docker + Docker Compose  
+
+
+Activate venv: conda activate Schemasense
