@@ -48,6 +48,8 @@ graph.add_edge("generator", "executor")
 graph.add_edge("executor", "summarizer")
 graph.add_edge("summarizer", END)
 
+app = graph.compile()
+
 if __name__ == "__main__":
     initial_state: WorkflowState = {
         "user_query": "Show me all employees in IT earning more than 70k",

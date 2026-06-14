@@ -28,3 +28,4 @@ It automatically discovers schemas and columns, generates safe SQL queries via a
 Activate venv: conda activate Schemasense
 python -m backend.api.agents.generator
 python -m backend.api.graph.workflow
+uvicorn backend.main:fastapi_app --reload
