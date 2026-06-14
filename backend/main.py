@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from backend.api.graph.workflow import app, WorkflowState
+from backend.api.services.graph.workflow import app, WorkflowState
 
 # Define request schema
 class QueryRequest(BaseModel):

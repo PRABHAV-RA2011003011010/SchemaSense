@@ -1,6 +1,6 @@
 import os
 from openai import OpenAI
-import config
+import backend.core.config as config
 
 client = OpenAI(
     base_url="https://router.huggingface.co/v1",

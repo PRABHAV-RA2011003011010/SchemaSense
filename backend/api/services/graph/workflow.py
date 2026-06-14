@@ -1,8 +1,8 @@
 from langgraph.graph import START, StateGraph, END
-from backend.api.db.schema_fetcher import get_schema_snapshot
-from backend.api.agents.generator import generate_sql
-from backend.api.agents.executor import execute_sql
-from backend.api.agents.summarizer import summarize_answer 
+from backend.api.services.db.schema_fetcher import get_schema_snapshot
+from backend.api.services.agents.generator import generate_sql
+from backend.api.services.agents.executor import execute_sql
+from backend.api.services.agents.summarizer import summarize_answer 
 from typing import TypedDict, Dict, List
 
 class WorkflowState(TypedDict):

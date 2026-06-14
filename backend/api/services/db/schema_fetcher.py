@@ -1,5 +1,5 @@
 import psycopg2
-import config
+import backend.core.config as config
 
 def get_connection():
     """Create a new Postgres connection using config.py values."""

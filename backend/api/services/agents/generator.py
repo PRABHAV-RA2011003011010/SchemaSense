@@ -1,5 +1,5 @@
 from huggingface_hub import InferenceClient
-import config
+import backend.core.config as config
 
 # Initialize Hugging Face client using token from config.py
 client = InferenceClient(
