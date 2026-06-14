@@ -6,4 +6,5 @@ router = APIRouter()
 
 @router.post("/", response_model=QueryResponse)
 def query_endpoint(request: QueryRequest):
+    print("Raw body received:", request.dict())
     return run_workflow(request.query)

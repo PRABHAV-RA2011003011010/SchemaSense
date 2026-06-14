@@ -29,3 +29,6 @@ Activate venv: conda activate Schemasense
 python -m backend.api.agents.generator
 python -m backend.api.graph.workflow
 python -m uvicorn backend.main:fastapi_app --reload
+npm run dev -- --port 3003
+
+Show me all employees in IT earning more than 70k
