@@ -30,6 +30,8 @@ python -m backend.api.agents.generator
 python -m backend.api.graph.workflow
 
 python -m uvicorn backend.main:fastapi_app --reload
+http://127.0.0.1:8000/docs
+
 cd frontend
 npm run dev -- --port 3003
 
