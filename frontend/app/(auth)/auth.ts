@@ -3,7 +3,6 @@ import NextAuth, { type DefaultSession } from "next-auth";
 import type { DefaultJWT } from "next-auth/jwt";
 import Credentials from "next-auth/providers/credentials";
 import { DUMMY_PASSWORD } from "@/lib/constants";
-import { createGuestUser, getUser } from "@/lib/db/queries";
 import { authConfig } from "./auth.config";
 
 export type UserType = "guest" | "regular";
@@ -38,6 +37,7 @@ export const {
 } = NextAuth({
   ...authConfig,
   providers: [
+    // Regular user provider (disabled DB lookups, just dummy check)
     Credentials({
       credentials: {
         email: { label: "Email", type: "email" },
@@ -46,35 +46,22 @@ export const {
       async authorize(credentials) {
         const email = String(credentials.email ?? "");
         const password = String(credentials.password ?? "");
-        const users = await getUser(email);
 
-        if (users.length === 0) {
-          await compare(password, DUMMY_PASSWORD);
-          return null;
-        }
-
-        const [user] = users;
-
-        if (!user.password) {
-          await compare(password, DUMMY_PASSWORD);
-          return null;
-        }
-
-        const passwordsMatch = await compare(password, user.password);
-
+        // For demo purposes, accept any email with the dummy password
+        const passwordsMatch = await compare(password, DUMMY_PASSWORD);
         if (!passwordsMatch) {
           return null;
         }
 
-        return { ...user, type: "regular" };
+        return { id: "regular-user", email, type: "regular" };
       },
     }),
+    // Guest provider (stubbed out, no DB)
     Credentials({
       id: "guest",
       credentials: {},
       async authorize() {
-        const [guestUser] = await createGuestUser();
-        return { ...guestUser, type: "guest" };
+        return { id: "guest-user", email: null, type: "guest" };
       },
     }),
   ],
@@ -84,7 +71,6 @@ export const {
         token.id = user.id as string;
         token.type = user.type;
       }
-
       return token;
     },
     session({ session, token }) {
@@ -92,7 +78,6 @@ export const {
         session.user.id = token.id;
         session.user.type = token.type;
       }
-
       return session;
     },
   },
