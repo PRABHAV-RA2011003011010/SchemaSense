@@ -215,46 +215,44 @@ function PureMultimodalInput({
   const [slashQuery, setSlashQuery] = useState("");
   const [slashIndex, setSlashIndex] = useState(0);
 
-  const submitForm = useCallback(() => {
-    window.history.pushState(
-      {},
-      "",
-      `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/chat/${chatId}`
-    );
+  const submitForm = useCallback(async () => {
+    window.history.pushState({}, "", `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/chat/${chatId}`);
 
-    sendMessage({
-      role: "user",
-      parts: [
-        ...attachments.map((attachment) => ({
-          type: "file" as const,
-          url: attachment.url,
-          name: attachment.name,
-          mediaType: attachment.contentType,
-        })),
+    try {
+      const res = await fetch("http://127.0.0.1:8000/query/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: input }), // plain string
+      });
+
+      const data = await res.json();
+
+      // Add user message to UI
+      setMessages((prev) => [
+        ...prev,
         {
-          type: "text",
-          text: input,
+          id: crypto.randomUUID(),
+          role: "user",
+          parts: [{ type: "text", text: input }],
         },
-      ],
-    });
+        {
+          id: crypto.randomUUID(),
+          role: "assistant",
+          parts: [{ type: "text", text: data.answer }],
+        },
+      ]);
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
 
     setAttachments([]);
     setLocalStorageInput("");
     setInput("");
-
     if (width && width > 768) {
       textareaRef.current?.focus();
     }
-  }, [
-    input,
-    setInput,
-    attachments,
-    sendMessage,
-    setAttachments,
-    setLocalStorageInput,
-    width,
-    chatId,
-  ]);
+  }, [input, setInput, attachments, setMessages, setAttachments, setLocalStorageInput, width, chatId]);
+
 
   const uploadFile = useCallback(async (file: File) => {
     const formData = new FormData();
