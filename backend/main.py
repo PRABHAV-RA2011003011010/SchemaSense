@@ -10,7 +10,7 @@ fastapi_app.include_router(query.router, prefix="/query", tags=["Query"])
 
 fastapi_app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3003"],  # or ["*"] for testing
+    allow_origins=["http://localhost:3003"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

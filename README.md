@@ -34,5 +34,8 @@ http://127.0.0.1:8000/docs
 
 cd frontend
 npm run dev -- --port 3003
+http://localhost:3003
 
-Show me all employees in IT earning less than 70k
+streamlit run app.py
+
+Show me all employees in IT earning more than 70k

@@ -19,19 +19,35 @@
 #     print("Raw body received:", body)
 #     return {"received": body} 
 
+# from fastapi import APIRouter
+# from pydantic import BaseModel
+
+# router = APIRouter()
+
+# class QueryRequest(BaseModel):
+#     query: str
+
+# class QueryResponse(BaseModel):
+#     answer: str
+
+# @router.post("/", response_model=QueryResponse)
+# async def query_endpoint(request: QueryRequest):
+#     print("Raw body received:", request.dict())
+#     # For now, just echo back the query as the answer
+#     return {"answer": f"You said: {request.query}"}
+
 from fastapi import APIRouter
-from pydantic import BaseModel
+from backend.api.models.query import QueryRequest
+from backend.api.services.graph.workflow import run_workflow
 
 router = APIRouter()
 
-class QueryRequest(BaseModel):
-    query: str
-
-class QueryResponse(BaseModel):
-    answer: str
-
-@router.post("/", response_model=QueryResponse)
+@router.post("/")
 async def query_endpoint(request: QueryRequest):
     print("Raw body received:", request.dict())
-    # For now, just echo back the query as the answer
-    return {"answer": f"You said: {request.query}"}
+
+    # Run your agentic SQL workflow
+    final_state = run_workflow(request.query)
+
+    # Only return the final answer to the frontend
+    return {"answer": final_state.get("answer", "")}
