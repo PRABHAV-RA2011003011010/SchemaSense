@@ -1,0 +1,47 @@
+{
+  "69e4768f-7043-4136-a218-d1957481244c": {
+    "title": "New Chat",
+    "messages": []
+  },
+  "12351975-e5f4-4d1e-bb7d-0670996a9923": {
+    "title": "New Chat",
+    "messages": []
+  },
+  "88a3e997-8165-40f3-bdfd-a81181b9472f": {
+    "title": "hi",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "assistant",
+        "content": "Hi!"
+      },
+      {
+        "role": "user",
+        "content": "Show me all employees in IT earning more than 70k"
+      },
+      {
+        "role": "assistant",
+        "content": "Based on the provided SQL results, here is the answer to your query:\n\nThere are two employees in the IT department who earn more than 70,000 per year. They are:\n\n1. Vikram Singh, a DevOps Engineer, who earns 80,000 per year.\n2. Amit Sharma, a Software Engineer, who earns 75,000 per year.\n\nBoth of these employees are part of the IT department and have a salary above 70,000."
+      },
+      {
+        "role": "user",
+        "content": "Show me all employees in IT earning less than 70k"
+      },
+      {
+        "role": "assistant",
+        "content": "Based on the SQL results, here is the answer to your query:\n\nThere are no employees in the IT department earning less than 70,000."
+      },
+      {
+        "role": "user",
+        "content": "Show me all employees in IT earning less than 70k"
+      },
+      {
+        "role": "assistant",
+        "content": "Based on the SQL results, I can see that there are no employees in the IT department earning less than 70,000."
+      }
+    ]
+  }
+}
