@@ -24,18 +24,24 @@ It automatically discovers schemas and columns, generates safe SQL queries via a
 - **Frontend**: React (planned)  
 - **Containerization**: Docker + Docker Compose  
 
+## Setup
+### 1. Activate Virtual Environment
+conda activate Schemasense
 
-Activate venv: conda activate Schemasense
-python -m backend.api.agents.generator
-python -m backend.api.graph.workflow
+### 2. Run Application
 
+Run Backend:
 python -m uvicorn backend.main:fastapi_app --reload
 http://127.0.0.1:8000/docs
 
+Run Frontend:
+1. React
 cd frontend
 npm run dev -- --port 3003
 http://localhost:3003
 
+2. Streamlit
 streamlit run app.py
 
+### 3. Testing Queries
 Show me all employees in IT earning more than 70k
