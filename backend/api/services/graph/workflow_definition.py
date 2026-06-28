@@ -6,10 +6,18 @@ from backend.api.services.agents.executor import execute_sql
 from backend.api.services.agents.summarizer import summarize_answer 
 from typing import TypedDict, Dict, List, Optional
 import logging
+import sys
 
 # Configure logging
+for h in logging.root.handlers[:]:
+    logging.root.removeHandler(h)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+handler = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+logger.setLevel(logging.INFO)
 
 class WorkflowState(TypedDict):
     schema: Optional[str]

@@ -25,6 +25,14 @@ It automatically discovers schemas and columns, generates safe SQL queries via a
 - **Containerization**: Docker + Docker Compose  
 
 ## Setup
+
+### 0. Start Postgres
+Open cmd
+wsl
+cd ~
+cd projects/postgres
+docker compose up -d
+
 ### 1. Activate Virtual Environment
 conda activate Schemasense
 

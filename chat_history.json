@@ -1,7 +1,40 @@
 {
   "69e4768f-7043-4136-a218-d1957481244c": {
-    "title": "New Chat",
-    "messages": []
+    "title": "hi",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "assistant",
+        "content": "\u274c Backend Error:\n\n500 Server Error: Internal Server Error for url: http://127.0.0.1:8000/query/"
+      },
+      {
+        "role": "user",
+        "content": "Show me all employees in IT earning more than 70k"
+      },
+      {
+        "role": "assistant",
+        "content": "\u274c Backend Error:\n\n500 Server Error: Internal Server Error for url: http://127.0.0.1:8000/query/"
+      },
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "assistant",
+        "content": "Hi!"
+      },
+      {
+        "role": "user",
+        "content": "Can you give me employees who are in the IT department only"
+      },
+      {
+        "role": "assistant",
+        "content": "Based on the SQL results, I can tell you that the employees who are in the IT department only are:\n\n* Amit Sharma, a Software Engineer\n* Vikram Singh, a DevOps Engineer\n\nThese two employees are part of the IT department."
+      }
+    ]
   },
   "12351975-e5f4-4d1e-bb7d-0670996a9923": {
     "title": "New Chat",
